@@ -10,5 +10,28 @@
       admin_filter.add_filter_request('{{ lookup }}', {{ value|tojson|safe }});
       {% endfor %}
     });
+
+
+
+    $(document).ready(function () {
+        // drag+drop
+        console.log($("table.table-striped"));
+        $("table.table-striped").tableDnD({
+            onDragClass: "dragged",
+            onDrop: function(table, row) {
+                var rows = table.tBodies[0].rows;
+                var ordering = {} // id to order
+                for (var i=0; i<rows.length; i++) {
+                    ordering[rows[i].id] = i;
+                }
+                console.log(ordering);
+                // heh
+                $.post('/change-order/projects', ordering, function(data) {
+                    console.log("ok, update done: " + data)
+                })
+            },
+        });
+    });
+
   </script>
 {% endblock %}

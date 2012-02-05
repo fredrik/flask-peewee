@@ -17,7 +17,7 @@
   {% include "admin/includes/filter_widgets.html" %}
   
   <form action="." class="form-horizontal" id="model-list" method="post"><input type="hidden" name="action" value="" />
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped" id="table-striped">
     <thead>
       <tr>
         <th class="check first shrink"><input type="checkbox" name="xxx" onchange="javascript:$('td input[type=checkbox]').attr('checked', this.checked);" /></th>
@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     {% for object in query.get_list() %}
-      <tr>
+      <tr id="{{ object.get_pk() }}">
         <td class="check"><input type="checkbox" name="id" value="{{ object.get_pk() }}" /></td>
         {% if model_admin.columns %}
           {% for column in model_admin.columns %}

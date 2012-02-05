@@ -37,5 +37,15 @@ table.table-striped td.links .inline li:last-child a {
   border-right: medium none;
 }
 
+/* table drag+drop */
+table.table-striped tr.dragged td {
+    background: green;
+    color: white;
+}
+table.table-striped tr.dragged td a {
+    color: white;
+}
+
+
 /* helpers */
 .hidden { display: none; }
