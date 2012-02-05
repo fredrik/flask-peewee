@@ -56,6 +56,8 @@ class ModelAdmin(object):
     delete_collect_objects = True
     delete_recursive = True
     
+    default_ordering = ''
+
     def __init__(self, admin, model):
         self.admin = admin
         self.model = model
@@ -127,7 +129,7 @@ class ModelAdmin(object):
     def index(self):
         query = self.get_query()
         
-        ordering = request.args.get('ordering') or ''
+        ordering = request.args.get('ordering') or self.default_ordering
         query = self.apply_ordering(query, ordering)
         
         # create a QueryFilter object with our current query
